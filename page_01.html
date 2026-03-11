@@ -1,0 +1,1079 @@
+<!-- PAGE: 퍼미션 DB 판매 랜딩페이지 -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>퍼미션 DB | 전화하면 받는 보험설계사 전용 DB | 유클래스랩</title>
+  <meta name="description" content="결번·허수 없는 퍼미션 DB. 고객이 직접 보험 상담을 요청한 DB만 제공합니다. 맞춤 스크립트 + 불량 교체 + 거절 대응 단톡방까지 함께 드립니다.">
+  <meta name="keywords" content="보험 DB 구매, 퍼미션 DB, 보험설계사 DB, 설계사 DB 판매, 보험 영업 DB, 결번 없는 DB, 보험 DB 추천">
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    :root {
+      --text-black: #1A1A1A;
+      --text-dark: #333333;
+      --text-gray: #666666;
+      --text-light: #999999;
+      --text-muted: #BCBCBC;
+      --bg-white: #FFFFFF;
+      --bg-light: #F5F5F5;
+      --bg-dark: #2D2D2D;
+      --bg-black: #1A1A1A;
+      --border-light: #E0E0E0;
+      --border-default: #D0D0D0;
+      --placeholder-bg: #E0E0E0;
+      --placeholder-icon: #BCBCBC;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Pretendard', sans-serif;
+      color: var(--text-gray);
+      line-height: 1.6;
+      background: var(--bg-white);
+    }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    button { cursor: pointer; border: none; font-family: inherit; background: none; }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* 버튼 */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: var(--radius-sm);
+      font-size: 15px;
+      font-weight: 600;
+      transition: opacity 0.2s;
+    }
+    .btn:hover { opacity: 0.85; }
+    .btn-primary {
+      background: var(--text-black);
+      color: #FFFFFF;
+      border: 1px solid var(--text-black);
+    }
+    .btn-secondary {
+      background: var(--bg-white);
+      color: var(--text-black);
+      border: 1px solid var(--border-default);
+    }
+    .btn-lg {
+      padding: 16px 36px;
+      font-size: 16px;
+    }
+
+    /* 섹션 공통 */
+    .section-label {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-light);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--text-black);
+      line-height: 1.3;
+      margin-bottom: 16px;
+    }
+    .section-desc {
+      font-size: 16px;
+      color: var(--text-gray);
+      line-height: 1.7;
+      max-width: 560px;
+    }
+    .text-center { text-align: center; }
+    .mx-auto { margin-left: auto; margin-right: auto; }
+
+    /* 이미지 플레이스홀더 */
+    .img-placeholder {
+      background: var(--placeholder-bg);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
+    .img-placeholder svg {
+      color: var(--placeholder-icon);
+      width: 48px;
+      height: 48px;
+    }
+
+    /* 아이콘 박스 */
+    .icon-box {
+      width: 64px;
+      height: 64px;
+      border-radius: var(--radius-sm);
+      background: var(--bg-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .icon-box svg {
+      width: 28px;
+      height: 28px;
+      color: var(--text-dark);
+    }
+
+    /* 헤더 */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg-white);
+      border-bottom: 1px solid var(--border-light);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+    .nav-logo {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-black);
+    }
+    .nav-links {
+      display: flex;
+      gap: 32px;
+    }
+    .nav-links a {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text-dark);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--text-black);
+    }
+    .nav-toggle {
+      display: none;
+      padding: 8px;
+    }
+    .nav-toggle svg {
+      width: 24px;
+      height: 24px;
+      color: var(--text-dark);
+    }
+
+    /* 섹션 1: 히어로 */
+    .hero-main {
+      padding: 120px 0 80px;
+      background: var(--bg-white);
+    }
+    .hero-main-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .hero-main .section-title {
+      font-size: 42px;
+    }
+    .pain-list {
+      margin: 24px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .pain-item {
+      font-size: 15px;
+      color: var(--text-light);
+      text-decoration: line-through;
+    }
+    .hero-promise {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--text-black);
+      margin-top: 24px;
+      padding: 16px;
+      background: var(--bg-light);
+      border-radius: var(--radius-sm);
+    }
+    .hero-buttons {
+      margin-top: 32px;
+    }
+
+    /* 섹션 2: 후기 */
+    .testimonial-section {
+      padding: 80px 0;
+      background: var(--bg-light);
+    }
+    .testimonial-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+    }
+    .testimonial-card {
+      background: var(--bg-white);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 32px;
+    }
+    .tc-profile {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 20px;
+    }
+    .tc-before,
+    .tc-after {
+      font-size: 14px;
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+    .tc-before {
+      color: var(--text-light);
+    }
+    .tc-after {
+      color: var(--text-gray);
+    }
+    .tc-highlight {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-black);
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border-light);
+    }
+
+    /* 섹션 3: 부가 혜택 */
+    .benefits-section {
+      padding: 80px 0;
+      background: var(--bg-white);
+    }
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+    }
+    .benefit-card {
+      padding: 32px;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+    }
+    .benefit-card .icon-box {
+      margin-bottom: 20px;
+    }
+    .benefit-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-black);
+      margin-bottom: 12px;
+    }
+    .benefit-desc {
+      font-size: 15px;
+      color: var(--text-gray);
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+    .benefit-point {
+      font-size: 14px;
+      color: var(--text-light);
+      font-style: italic;
+    }
+
+    /* 섹션 4: 상품 라인업 */
+    .products-section {
+      padding: 80px 0;
+      background: var(--bg-light);
+    }
+    .products-notice {
+      background: var(--bg-white);
+      border: 2px dashed var(--border-default);
+      border-radius: var(--radius-md);
+      padding: 40px;
+      margin-top: 48px;
+      text-align: center;
+    }
+    .products-notice-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-black);
+      margin-bottom: 12px;
+    }
+    .products-notice-desc {
+      font-size: 15px;
+      color: var(--text-gray);
+      line-height: 1.7;
+    }
+    .products-notice-list {
+      margin-top: 20px;
+      text-align: left;
+      display: inline-block;
+    }
+    .products-notice-list li {
+      font-size: 14px;
+      color: var(--text-gray);
+      padding: 4px 0;
+      padding-left: 20px;
+      position: relative;
+    }
+    .products-notice-list li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--text-light);
+    }
+
+    /* 섹션 5: 신청 방법 */
+    .process-section {
+      padding: 80px 0;
+      background: var(--bg-white);
+    }
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+    }
+    .process-step {
+      text-align: center;
+    }
+    .step-number {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+    .step-icon-wrap {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: var(--bg-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+    }
+    .step-icon-wrap svg {
+      width: 28px;
+      height: 28px;
+      color: var(--text-dark);
+    }
+    .step-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-black);
+      margin-bottom: 8px;
+    }
+    .step-desc {
+      font-size: 14px;
+      color: var(--text-gray);
+      line-height: 1.6;
+    }
+
+    /* 섹션 6: FAQ */
+    .faq-section {
+      padding: 80px 0;
+      background: var(--bg-light);
+    }
+    .faq-list {
+      max-width: 800px;
+      margin: 48px auto 0;
+    }
+    .faq-item {
+      border-bottom: 1px solid var(--border-light);
+      background: var(--bg-white);
+      margin-bottom: 8px;
+      border-radius: var(--radius-sm);
+    }
+    .faq-question {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 24px;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-black);
+      text-align: left;
+    }
+    .faq-question svg {
+      width: 20px;
+      height: 20px;
+      color: var(--text-light);
+      flex-shrink: 0;
+      transition: transform 0.2s;
+    }
+    .faq-item.is-open .faq-question svg {
+      transform: rotate(180deg);
+    }
+    .faq-answer {
+      display: none;
+      padding: 0 24px 20px;
+      font-size: 15px;
+      color: var(--text-gray);
+      line-height: 1.7;
+    }
+    .faq-item.is-open .faq-answer {
+      display: block;
+    }
+
+    /* 섹션 7: CTA 폼 */
+    .cta-form-section {
+      padding: 80px 0;
+      background: var(--bg-dark);
+    }
+    .cta-form-section .section-title {
+      color: #FFFFFF;
+    }
+    .cta-form-section .section-desc {
+      color: rgba(255,255,255,0.7);
+    }
+    .form-wrapper {
+      max-width: 600px;
+      margin: 48px auto 0;
+      background: var(--bg-white);
+      padding: 40px;
+      border-radius: var(--radius-md);
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-black);
+      margin-bottom: 8px;
+    }
+    .form-label .required {
+      color: #FF6B6B;
+    }
+    .form-input,
+    .form-select,
+    .form-textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-sm);
+      font-size: 15px;
+      font-family: inherit;
+      color: var(--text-dark);
+    }
+    .form-textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus {
+      outline: none;
+      border-color: var(--text-black);
+    }
+    .form-microcopy {
+      font-size: 13px;
+      color: var(--text-light);
+      margin-top: 20px;
+      line-height: 1.6;
+    }
+    .form-submit {
+      width: 100%;
+      margin-top: 24px;
+    }
+    .alt-contact {
+      margin-top: 32px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border-light);
+      text-align: center;
+    }
+    .alt-contact-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 12px;
+    }
+    .alt-contact-links {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+    }
+    .alt-contact-links a {
+      font-size: 14px;
+      color: var(--text-gray);
+    }
+
+    /* 푸터 */
+    .footer {
+      padding: 60px 0 32px;
+      background: var(--bg-white);
+      border-top: 1px solid var(--border-light);
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 40px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .footer-brand-name {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-black);
+      margin-bottom: 12px;
+    }
+    .footer-brand-desc {
+      font-size: 14px;
+      color: var(--text-light);
+      line-height: 1.6;
+    }
+    .footer-col-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-black);
+      margin-bottom: 16px;
+    }
+    .footer-col a {
+      display: block;
+      font-size: 14px;
+      color: var(--text-light);
+      padding: 4px 0;
+    }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      padding-top: 24px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* TOP 버튼 */
+    .btn-top {
+      position: fixed;
+      bottom: 40px;
+      right: 40px;
+      width: 48px;
+      height: 48px;
+      background: var(--text-black);
+      color: #FFFFFF;
+      border-radius: 50%;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 99;
+      transition: opacity 0.2s;
+    }
+    .btn-top:hover {
+      opacity: 0.85;
+    }
+    .btn-top.visible {
+      display: flex;
+    }
+    .btn-top svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    /* 반응형 */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 72px;
+        left: 0;
+        right: 0;
+        background: var(--bg-white);
+        border-bottom: 1px solid var(--border-light);
+        flex-direction: column;
+        gap: 0;
+        padding: 16px 0;
+      }
+      .nav-links.active {
+        display: flex;
+      }
+      .nav-links a {
+        padding: 12px 24px;
+      }
+      .nav-toggle {
+        display: block;
+      }
+
+      .section-title {
+        font-size: 28px;
+      }
+
+      .hero-main {
+        padding: 80px 0 60px;
+      }
+      .hero-main-inner {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .hero-main .section-title {
+        font-size: 32px;
+      }
+
+      .testimonial-cards,
+      .benefits-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .process-steps {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+      .footer-bottom {
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .form-wrapper {
+        padding: 32px 20px;
+      }
+
+      .btn-top {
+        bottom: 24px;
+        right: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 헤더 -->
+  <header class="nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="page_01.html" class="nav-logo">유클래스랩</a>
+        <nav class="nav-links">
+          <a href="#section-reviews">DB 후기</a>
+          <a href="#section-benefits">혜택 패키지</a>
+          <a href="#section-products">상품 라인업</a>
+          <a href="#section-process">신청 방법</a>
+          <a href="#section-faq">FAQ</a>
+          <a href="#section-apply">DB 신청</a>
+        </nav>
+        <button class="nav-toggle" aria-label="메뉴 열기">
+          <i data-lucide="menu"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- 섹션 1: 히어로 -->
+    <section class="hero-main">
+      <div class="container">
+        <div class="hero-main-inner">
+          <div>
+            <p class="section-label">전화하면 받는 DB, 써보신 적 있으세요?</p>
+            <h1 class="section-title">결번, 허수, 돌려막기 —<br>그 DB에 또 돈 쓰실 건가요?</h1>
+            <div class="pain-list">
+              <div class="pain-item">"결번 50%, 돈만 날렸습니다"</div>
+              <div class="pain-item">"상담 동의? 받아본 적 없습니다"</div>
+              <div class="pain-item">"같은 DB 3군데서 돌려 쓰더라고요"</div>
+            </div>
+            <p class="section-desc">고객이 직접 보험 상담을 요청한 퍼미션 DB만 드립니다. 전화하면 받습니다.</p>
+            <div class="hero-promise">퍼미션 DB는 고객이 '보험 상담 받겠다'고 직접 동의한 DB입니다.</div>
+            <div class="hero-buttons">
+              <a href="#section-apply" class="btn btn-primary btn-lg">DB 신청하기</a>
+            </div>
+          </div>
+          <div class="img-placeholder" style="aspect-ratio:4/3;">
+            <i data-lucide="phone-call"></i>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 섹션 2: 후기 -->
+    <section id="section-reviews" class="testimonial-section">
+      <div class="container">
+        <div class="text-center">
+          <h2 class="section-title">처음으로 첫 콜에 연결됐습니다</h2>
+          <p class="section-desc mx-auto">퍼미션 DB를 직접 써본 설계사들의 솔직한 이야기</p>
+        </div>
+        <div class="testimonial-cards">
+          <div class="testimonial-card">
+            <p class="tc-profile">김○○ 설계사 / GA 7년차</p>
+            <p class="tc-before"><strong>Before:</strong> 다른 데서 100건 사면 결번이 30건은 됐어요</p>
+            <p class="tc-after"><strong>After:</strong> 여기 DB는 10건 중 8건 이상 연결돼요. 진짜 놀랐습니다</p>
+            <p class="tc-highlight">"전화하면 진짜 받아요"</p>
+          </div>
+          <div class="testimonial-card">
+            <p class="tc-profile">이○○ 설계사 / 개인영업 5년차</p>
+            <p class="tc-before"><strong>Before:</strong> 상담 동의했다는데 전화하면 '그런 적 없다'고 하더라고요</p>
+            <p class="tc-after"><strong>After:</strong> 퍼미션 DB는 고객이 먼저 상담 요청한 거라 대화가 시작돼요</p>
+            <p class="tc-highlight">"첫 콜부터 상담 분위기가 달라요"</p>
+          </div>
+          <div class="testimonial-card">
+            <p class="tc-profile">박○○ 팀장 / GA 관리 10년차</p>
+            <p class="tc-before"><strong>Before:</strong> 팀원들한테 DB 줘도 연결 안 돼서 사기가 바닥이었어요</p>
+            <p class="tc-after"><strong>After:</strong> 팀원 5명에게 배분했는데 일주일 만에 3건 청약 나왔습니다</p>
+            <p class="tc-highlight">"팀 전체 실적이 올라갔어요"</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 섹션 3: 부가 혜택 -->
+    <section id="section-benefits" class="benefits-section">
+      <div class="container">
+        <div class="text-center">
+          <h2 class="section-title">DB만 드리는 게 아닙니다</h2>
+          <p class="section-desc mx-auto">구매하시면 이 모든 것을 함께 받으실 수 있습니다</p>
+        </div>
+        <div class="benefits-grid">
+          <div class="benefit-card">
+            <div class="icon-box">
+              <i data-lucide="file-text"></i>
+            </div>
+            <h3 class="benefit-title">구매 DB 맞춤형 '골든 스크립트'</h3>
+            <p class="benefit-desc">구매하신 DB 성격에 딱 맞는 첫 콜 대본을 함께 드립니다. '뭐라고 말해야 하지?' 고민 없이 바로 전화하세요.</p>
+            <p class="benefit-point">DB 성격별 맞춤 — 건강보험 DB엔 건강보험 스크립트, 종신 DB엔 종신 스크립트</p>
+          </div>
+          <div class="benefit-card">
+            <div class="icon-box">
+              <i data-lucide="refresh-cw"></i>
+            </div>
+            <h3 class="benefit-title">불량 DB 교체</h3>
+            <p class="benefit-desc">결번·허수·중복이 확인되면 교체해 드립니다. 내 돈 주고 산 DB, 한 건도 허투루 넘기지 않습니다.</p>
+            <p class="benefit-point">[클라이언트 확인 필요: 구체적 교체 기준 — 결번 확인 후 몇 일 이내 신고, 교체 비율 상한 등]</p>
+          </div>
+          <div class="benefit-card">
+            <div class="icon-box">
+              <i data-lucide="message-circle"></i>
+            </div>
+            <h3 class="benefit-title">1:1 거절 대응 단톡방 입장권</h3>
+            <p class="benefit-desc">현장에서 막히는 거절 상황, 단톡방에 질문하면 전문가가 직접 답변드립니다. 혼자 고민하지 마세요.</p>
+            <p class="benefit-point">실시간 질문 → 실시간 답변. '이런 경우엔 이렇게 말씀하세요' 바로 받아보실 수 있습니다.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 섹션 4: 상품 라인업 -->
+    <section id="section-products" class="products-section">
+      <div class="container">
+        <div class="text-center">
+          <h2 class="section-title">내 영업 스타일에 맞는 DB를 고르세요</h2>
+          <p class="section-desc mx-auto">모든 DB는 고객이 직접 보험 상담을 요청한 퍼미션 DB입니다</p>
+        </div>
+        <div class="products-notice">
+          <p class="products-notice-title">[클라이언트 확인 필요: DB 상품 라인업 정보]</p>
+          <p class="products-notice-desc">상품 라인업 와이어프레임 제작을 위해 아래 정보가 필요합니다:</p>
+          <ul class="products-notice-list">
+            <li>상품별 명칭 (예: 실시간 DB, 1일차 DB, 3일차 DB, 주간 DB 등)</li>
+            <li>상품별 가격 (건당 단가 또는 패키지 가격)</li>
+            <li>상품별 특성 (수집 시점, 연결률 체감 차이, 상담 동의 방식 등)</li>
+            <li>상품별 추천 대상 (초보 설계사 / 고경력 다건 영업 / 팀장급 대량 구매 등)</li>
+            <li>최소 구매 수량</li>
+            <li>할인 조건 (대량 구매 할인, 정기 구매 할인 등)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 섹션 5: 신청 방법 -->
+    <section id="section-process" class="process-section">
+      <div class="container">
+        <div class="text-center">
+          <h2 class="section-title">5분이면 신청 끝, 이틀 안에 DB 받으세요</h2>
+          <p class="section-desc mx-auto">복잡한 절차 없이 빠르게 진행됩니다</p>
+        </div>
+        <div class="process-steps">
+          <div class="process-step">
+            <p class="step-number">STEP 01</p>
+            <div class="step-icon-wrap"><i data-lucide="clipboard"></i></div>
+            <h3 class="step-title">DB 신청하기</h3>
+            <p class="step-desc">아래 신청서를 작성해 주세요. 이름, 연락처, 희망 DB 등급/수량만 입력하면 됩니다.</p>
+          </div>
+          <div class="process-step">
+            <p class="step-number">STEP 02</p>
+            <div class="step-icon-wrap"><i data-lucide="phone"></i></div>
+            <h3 class="step-title">담당자 안내 연락</h3>
+            <p class="step-desc">영업일 기준 24시간 내 담당자가 직접 연락드립니다.</p>
+          </div>
+          <div class="process-step">
+            <p class="step-number">STEP 03</p>
+            <div class="step-icon-wrap"><i data-lucide="credit-card"></i></div>
+            <h3 class="step-title">DB 금액 입금</h3>
+            <p class="step-desc">안내받은 계좌로 결제 금액을 입금해 주세요.</p>
+          </div>
+          <div class="process-step">
+            <p class="step-number">STEP 04</p>
+            <div class="step-icon-wrap"><i data-lucide="check-circle"></i></div>
+            <h3 class="step-title">입금 확인 및 확정</h3>
+            <p class="step-desc">입금 확인 후 주문 확정 안내를 보내드립니다.</p>
+          </div>
+          <div class="process-step">
+            <p class="step-number">STEP 05</p>
+            <div class="step-icon-wrap"><i data-lucide="send"></i></div>
+            <h3 class="step-title">DB 배포</h3>
+            <p class="step-desc">영업일 기준 1~2일 내 DB + 골든 스크립트 + 거절 대응 단톡방 초대를 함께 발송합니다.</p>
+          </div>
+          <div class="process-step">
+            <p class="step-number">STEP 06</p>
+            <div class="step-icon-wrap"><i data-lucide="refresh-cw"></i></div>
+            <h3 class="step-title">DB A/S</h3>
+            <p class="step-desc">결번·허수 DB가 확인되면 교체해 드립니다.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 섹션 6: FAQ -->
+    <section id="section-faq" class="faq-section">
+      <div class="container">
+        <div class="text-center">
+          <h2 class="section-title">궁금한 점, 먼저 답해드릴게요</h2>
+          <p class="section-desc mx-auto">설계사분들이 가장 많이 물어보시는 질문을 모았습니다</p>
+        </div>
+        <div class="faq-list">
+          <div class="faq-item is-open">
+            <button class="faq-question">
+              퍼미션 DB가 정확히 뭔가요? 다른 DB랑 뭐가 다른가요?
+              <i data-lucide="chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+              퍼미션 DB는 고객이 직접 '보험 상담을 받겠다'고 동의한 DB입니다. 일반 DB는 이벤트 응모·설문 참여 등으로 수집된 연락처를 돌려 쓰는 경우가 많아 결번·거부율이 높습니다. 퍼미션 DB는 상담 의사가 확인된 고객만 제공하기 때문에 첫 콜 연결률과 상담 진입률이 체감상 확연히 다릅니다.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question">
+              결번이나 허수가 나오면 어떻게 되나요?
+              <i data-lucide="chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+              결번·허수·중복이 확인되면 교체해 드립니다. [클라이언트 확인 필요: 구체적 교체 기준 — 확인 후 며칠 이내 신고, 교체 비율 상한, 교체 불가 사유 등]
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question">
+              최소 구매 수량이 있나요?
+              <i data-lucide="chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+              [클라이언트 확인 필요: 최소 구매 수량 및 조건]
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question">
+              다른 DB 업체에서 넘어오려는데, 기존 계약이 있어도 괜찮나요?
+              <i data-lucide="chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+              네, 기존 업체와의 계약 여부와 관계없이 신청 가능합니다. 별도 위약금이나 전환 수수료 같은 건 없습니다.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question">
+              DB 환불은 되나요?
+              <i data-lucide="chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+              [클라이언트 확인 필요: 환불 정책 — 환불 가능 여부, 조건, 기한 등]
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question">
+              팀 단위로 대량 구매하고 싶은데 할인이 있나요?
+              <i data-lucide="chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+              [클라이언트 확인 필요: 대량 구매 할인 정책 유무 및 조건]
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question">
+              DB가 다른 설계사와 중복으로 가지 않나요?
+              <i data-lucide="chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+              [클라이언트 확인 필요: 중복 배포 방지 정책 — 1인 전용 배포 여부, 동일 DB 동시 판매 방지 체계 등]
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 섹션 7: CTA 폼 -->
+    <section id="section-apply" class="cta-form-section">
+      <div class="container">
+        <div class="text-center">
+          <h2 class="section-title">전화하면 받는 DB, 지금 신청하세요</h2>
+          <p class="section-desc mx-auto">고객이 직접 상담을 요청한 퍼미션 DB + 골든 스크립트 + 거절 대응 단톡방까지</p>
+        </div>
+        <div class="form-wrapper">
+          <form>
+            <div class="form-group">
+              <label class="form-label">이름 <span class="required">*</span></label>
+              <input type="text" class="form-input" placeholder="이름을 입력해주세요" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">연락처 <span class="required">*</span></label>
+              <input type="tel" class="form-input" placeholder="연락받으실 번호를 입력해주세요" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">소속</label>
+              <input type="text" class="form-input" placeholder="GA명 또는 개인영업 (선택)">
+            </div>
+            <div class="form-group">
+              <label class="form-label">희망 DB 등급</label>
+              <select class="form-select">
+                <option value="">선택해주세요</option>
+                <option value="placeholder1">[클라이언트 확인 필요: 등급 항목]</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">희망 수량</label>
+              <input type="number" class="form-input" placeholder="예: 100" min="1">
+            </div>
+            <div class="form-group">
+              <label class="form-label">문의사항</label>
+              <textarea class="form-textarea" placeholder="궁금하신 점을 자유롭게 적어주세요 (선택)"></textarea>
+            </div>
+            <div class="form-microcopy">
+              <p>• 영업일 기준 24시간 내 담당자가 직접 연락드립니다.</p>
+              <p>• 입력하신 정보는 DB 안내 목적으로만 사용되며 외부에 제공되지 않습니다.</p>
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg form-submit">DB 신청하기</button>
+          </form>
+          <div class="alt-contact">
+            <p class="alt-contact-title">다른 방법으로 문의하기</p>
+            <div class="alt-contact-links">
+              <a href="tel:[클라이언트 확인 필요: 전화번호]">전화 문의: [클라이언트 확인 필요: 전화번호]</a>
+              <span>|</span>
+              <a href="[클라이언트 확인 필요: 카카오톡 채널 링크]" target="_blank">카카오톡 상담</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 푸터 -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <p class="footer-brand-name">유클래스랩</p>
+          <p class="footer-brand-desc">보험설계사 퍼미션 DB 전문 공급업체</p>
+        </div>
+        <div>
+          <p class="footer-col-title">메뉴</p>
+          <a href="#section-reviews">DB 후기</a>
+          <a href="#section-benefits">혜택 패키지</a>
+          <a href="#section-products">상품 라인업</a>
+        </div>
+        <div>
+          <p class="footer-col-title">안내</p>
+          <a href="#section-process">신청 방법</a>
+          <a href="#section-faq">FAQ</a>
+          <a href="#section-apply">DB 신청</a>
+        </div>
+        <div>
+          <p class="footer-col-title">고객 지원</p>
+          <a href="tel:[클라이언트 확인 필요]">전화: [클라이언트 확인 필요]</a>
+          <a href="mailto:[클라이언트 확인 필요]">이메일: [클라이언트 확인 필요]</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 유클래스랩. All rights reserved.</span>
+        <span>
+          [클라이언트 확인 필요: 상호 / 대표자명 / 사업자번호 / 주소]<br>
+          <a href="#">개인정보처리방침</a> | <a href="#">이용약관</a>
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- TOP 버튼 -->
+  <button class="btn-top" aria-label="맨 위로">
+    <i data-lucide="arrow-up"></i>
+  </button>
+
+  <script>
+    lucide.createIcons();
+
+    // 모바일 메뉴 토글
+    document.querySelector('.nav-toggle').addEventListener('click', function() {
+      document.querySelector('.nav-links').classList.toggle('active');
+    });
+
+    // FAQ 아코디언
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const wasOpen = item.classList.contains('is-open');
+        
+        // 다른 모든 항목 닫기
+        document.querySelectorAll('.faq-item').forEach(faq => {
+          faq.classList.remove('is-open');
+        });
+        
+        // 현재 항목 토글
+        if (!wasOpen) {
+          item.classList.add('is-open');
+        }
+      });
+    });
+
+    // TOP 버튼
+    const btnTop = document.querySelector('.btn-top');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        btnTop.classList.add('visible');
+      } else {
+        btnTop.classList.remove('visible');
+      }
+    });
+    btnTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // 스무스 스크롤
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          const offset = 72; // 헤더 높이
+          const targetPosition = target.offsetTop - offset;
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+          // 모바일 메뉴 닫기
+          document.querySelector('.nav-links').classList.remove('active');
+        }
+      });
+    });
+
+    // 폼 제출 처리
+    document.querySelector('form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('DB 신청이 접수되었습니다.\n영업일 기준 24시간 내 담당자가 연락드리겠습니다.');
+      this.reset();
+    });
+  </script>
+</body>
+</html>
